@@ -1,4 +1,5 @@
 class FriendsController < ApplicationController
+  skip_before_action :authenticate, only: [:index,:create,:update]
   def index
     render json: Friend.all
   end

@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2018_09_23_035213) do
     t.date "date"
     t.string "time_start"
     t.string "time_end"
+    t.boolean "all_day?"
     t.string "description"
     t.string "address"
     t.datetime "created_at", null: false
@@ -35,6 +36,15 @@ ActiveRecord::Schema.define(version: 2018_09_23_035213) do
   end
 
   create_table "games", force: :cascade do |t|
+    t.string "img"
+    t.string "name"
+    t.string "description"
+    t.string "category"
+    t.string "mechanic"
+    t.string "publisher"
+    t.integer "playing_time"
+    t.integer "min_players"
+    t.integer "max_players"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
