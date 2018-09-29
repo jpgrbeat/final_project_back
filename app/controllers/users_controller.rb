@@ -1,23 +1,8 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate, only: [:index,:create,:update]
+  skip_before_action :authenticate, only: [:index,:create]
 
   def index
-    render json: User.all.to_json(only: [:name,:username,:email,:img,:description],
-    include: [
-      {invitee_friends:
-        {
-          only: [:invitee_id, :id],
-          include: [invitee:{only: [:name,:username,:email,:img,:description]}]
-        }
-      },
-      {invitor_friends:
-        {
-          only: [:invitor_id, :id],
-          include: [invitor:{only: [:name,:username,:email,:img,:description]}]
-        }
-      }
-      ])
-
+    render json: User.all
   end
 
   def create
@@ -25,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    render json: my_current_user.to_json(only: [:name, :username,:description,:img,:id])
+    render json: my_current_user
   end
 
   def update

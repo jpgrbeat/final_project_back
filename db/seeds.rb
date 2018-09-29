@@ -18,8 +18,12 @@ arr.each do |x|
   doc = Nokogiri::XML(open("https://www.boardgamegeek.com/xmlapi/boardgame/#{x}")) do |config|
     config.strict.noblanks
   end
-  description = doc.css('description').children.to_html
-  name = doc.css('name').children.to_html
+  if !doc.xpath('//error').empty?
+    next
+  end
+  puts doc
+  description = doc.xpath('//description').children.text.gsub('<br/>', "")
+  name = doc.xpath('//name').children.first.text
   img = doc.css('thumbnail').children.to_html
   category = doc.css('boardgamecategory').children.to_html
   mechanic = doc.css('boardgamemechanic').children.to_html
