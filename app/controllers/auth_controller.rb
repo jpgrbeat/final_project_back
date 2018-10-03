@@ -11,7 +11,7 @@ class AuthController < ApplicationController
 
     if user && user.authenticate(params[:password])
       token = generate_token(user)
-      render json: {token: token, user: user, user_games: user.games}, status: 200
+      render json: {token: token, user: user, user_games: user.games, invitee_friends: user.invitees, invitor_friends: user.invitors}, status: 200
     else
       render "Failed", status: 404
     end

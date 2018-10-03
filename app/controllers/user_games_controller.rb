@@ -9,10 +9,11 @@ class UserGamesController < ApplicationController
     render json: UserGame.create(user_game_params)
   end
   def update
-    render json: UserGame.update(params)
+    @user_game = UserGame.find(params[:id])
+    render json: @user_game.update(user_game_params)
   end
   private
   def user_game_params
-    params.require(:user_game).permit(:user_id,:game_id)
+    params.require(:user_game).permit(:id,:user_id,:game_id, :active)
   end
 end

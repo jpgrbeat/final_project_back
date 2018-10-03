@@ -1,5 +1,5 @@
 class FriendsController < ApplicationController
-  skip_before_action :authenticate, only: [:index,:create,:update]
+  skip_before_action :authenticate, only: [:index]
   def index
     render json: Friend.all
   end
@@ -15,6 +15,6 @@ class FriendsController < ApplicationController
 
   private
   def friend_params
-    params.require(:friend).permit(:invitor_id, :invitee_id)
+    params.require(:friend).permit(:id,:invitor_id, :invitee_id)
   end
 end

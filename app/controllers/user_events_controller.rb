@@ -1,10 +1,12 @@
 class UserEventsController < ApplicationController
+  skip_before_action :authenticate, only: [:index]
+
   def index
     render json: UserEvent.all
   end
 
   def create
-    render json: UserEvent.create(user_skill_params)
+    render json: UserEvent.create(user_event_params)
   end
 
   def destroy
