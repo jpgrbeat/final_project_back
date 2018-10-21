@@ -9,4 +9,5 @@ class UserSerializer < ActiveModel::Serializer
   has_many :invitors, through: :invitee_friends
   has_many :user_games
   has_many :games, through: :user_games
+  has_many :comments
 end

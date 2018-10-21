@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :invitees, through: :invitee_friends
   has_many :user_games
   has_many :games, through: :user_games
+  has_many :comments
 end
